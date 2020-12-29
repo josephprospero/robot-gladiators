@@ -43,6 +43,7 @@ var fight = function(enemyName) {
 
             // award player money for winning
             playerMoney = playerMoney + 20;
+            break;
 
             //leave while() kiio since enemy is dead
         
