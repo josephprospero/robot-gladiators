@@ -7,7 +7,7 @@
 
 
 var randomNumber = function(min, max) {
-    var value = Math.floor(Math.random() * (max - min + min) + min);
+    var value = Math.floor(Math.random() * (max - min + 1)) + min;
     return value;
 }
 
@@ -54,15 +54,15 @@ var playerInfo = {
 var enemyInfo = [
     {
         name: "Roborto",
-        attack: randomNumber(10,14)
+        attack: randomNumber(10, 14)
     },
     {
         name: "Amy Android",
-        attack: randomNumber(10,14)
+        attack: randomNumber(10, 14)
     },
     {
         name: "Robo Trumble",
-        attack: randomNumber(10,14)
+        attack: randomNumber(10, 14)
     }
 ];
 
@@ -119,7 +119,7 @@ var fight = function(enemy) {
                 window.alert(enemy.name + " still has " + enemy.health + " health left.");
             }
         
-            var damage = randomNumber(enemy.attack - 3, enemy.attack);
+            damage = randomNumber(enemy.attack - 3, enemy.attack);
             
             playerInfo.health = Math.max(0, playerInfo.health - damage);
             console.log(enemy.name + " attacked " + playerInfo.name + "." + playerInfo.name + " now has " + playerInfo.health + " health remaining.");
@@ -193,20 +193,19 @@ var endGame = function() {
 
 var shop = function() {
     // ask player what they'd like to do
-    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
+    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 1 for REFILL, 2 for UPGRADE, 3 for LEAVE to make a choice.");
+
+    shopOptionPrompt = parseInt(shopOptionPrompt);
 
     // use switch to carry out action
     switch (shopOptionPrompt) {
-        case "REFILL": 
-        case "refill":
+        case 1:
             playerInfo.refillHealth();
             break;
-        case "UPGRADE":
-        case "upgrade":
+        case 2:
             playerInfo.upgradeAttack();
             break;
-        case "LEAVE":
-        case "leave":
+        case 3:
             window.alert("Leaving the store.");
             break;
         default:
